@@ -2,7 +2,7 @@ import chef from '../../../assets/home/chef-service.jpg'
 
 const ChefServices = () => {
     return (
-        <div className='relative'>
+        <div className='relative '>
             <div >
                 <img src={chef} alt="" />
             </div>

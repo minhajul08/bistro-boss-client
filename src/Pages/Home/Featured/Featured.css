@@ -1,0 +1,5 @@
+.featured-item {
+    background-image: url('../../../assets/home/featured.jpg');
+    background-color: rgba(21, 21, 21, 0.7); /* Dark overlay */
+    background-blend-mode: darken; /* Blends the color with the image */
+}
