@@ -1,0 +1,14 @@
+.mySwiper .swiper-pagination-bullet {
+    margin: 0 12px; /* Adjust this value to control the gap between bullets */
+    padding: 6px 12px;
+    background-color: #eee;
+    border-radius: 50%;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .mySwiper .swiper-pagination-bullet-active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
