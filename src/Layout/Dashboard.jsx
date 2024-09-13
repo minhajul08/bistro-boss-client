@@ -3,10 +3,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoHome, IoRestaurant } from "react-icons/io5";
 import { MdFormatListBulleted } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import UseAdmin from "../hooks/UseAdmin";
 
 const Dashboard = () => {
     // todo 
-    const isAdmin = true;
+    const [isAdmin] = UseAdmin ();
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-[#D1A054]">
@@ -36,9 +37,9 @@ const Dashboard = () => {
                                     <NavLink to="/dashboard/userHome">
                                         <FaShoppingCart></FaShoppingCart>
                                         Admin Home</NavLink> </li>
-                                <li> <NavLink to="/dashboard/addItems">
+                                <li> <NavLink to="/dashboard/reservation">
                                     <IoRestaurant />
-                                    Add items</NavLink> </li>
+                                    Reservation</NavLink> </li>
                                 <li> <NavLink to="/dashboard/manageItems">
                                     <MdFormatListBulleted className="" />
                                     Manage items</NavLink> </li>
