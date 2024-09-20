@@ -40,10 +40,10 @@ const Dashboard = () => {
                                 <li> <NavLink to="/dashboard/reservation">
                                     <IoRestaurant />
                                     Reservation</NavLink> </li>
-                                <li> <NavLink to="/dashboard/manageItems">
+                                <li> <NavLink to="/dashboard/">
                                     <MdFormatListBulleted className="" />
                                     Manage items</NavLink> </li>
-                                <li> <NavLink to="/dashboard/manageBookings">
+                                <li> <NavLink to="/dashboard/manageBooking">
                                     <FaBook />
                                     Manage bookings</NavLink> </li>
                                 <li> <NavLink to="/dashboard/cart">
