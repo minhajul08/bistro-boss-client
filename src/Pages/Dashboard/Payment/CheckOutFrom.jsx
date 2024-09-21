@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import UseCart from "../../../hooks/UseCart";
 import UseAuth from "../../../hooks/UseAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = () => {
     const [error, setError] = useState('');
@@ -12,15 +14,18 @@ const CheckOutForm = () => {
     const elements = useElements();
     const axiosSecure = UseAxiosSecure();
     const { user } = UseAuth();
-    const [cart] = UseCart();
+    const navigate = useNavigate ()
+    const [cart, refetch] = UseCart();
     const totalPrice = cart.reduce((total, item) => total + item.price, 0)
 
     useEffect(() => {
-        axiosSecure.post('/create-payment-intent', { price: totalPrice })
+        if (totalPrice > 0) {
+            axiosSecure.post('/create-payment-intent', { price: totalPrice })
             .then(res => {
                 console.log(res.data.clientSecret)
                 SetClientSecret(res.data.clientSecret)
             })
+        }
     }, [axiosSecure, totalPrice])
 
     const handleSubmit = async (event) => {
@@ -66,6 +71,29 @@ const CheckOutForm = () => {
             if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
+
+                const payment = {
+                    email:user.email,
+                    price:totalPrice,
+                    transactionId: paymentIntent.id,
+                    date:new Date (), // utc date convert. use moment js 
+                    cartIds: cart.map(item => item._id),
+                    menuItemIds: cart.map (item => item.menuId),
+                    status: 'pending'
+                }
+                const res = await axiosSecure.post ('/payments', payment);
+                console.log ('payment save',res)
+                refetch ();
+                if (res.data?.paymentResult?.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your Payment is successfully completed",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+                navigate ('/dashboard/paymentHistory')
             }
         }
     };

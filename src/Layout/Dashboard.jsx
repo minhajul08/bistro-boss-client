@@ -1,7 +1,7 @@
 import { FaBook, FaEnvelope, FaShoppingCart,  FaUsers, FaUtensils } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoHome, IoRestaurant } from "react-icons/io5";
-import { MdFormatListBulleted } from "react-icons/md";
+import { MdFormatListBulleted, MdPayment } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import UseAdmin from "../hooks/UseAdmin";
 
@@ -40,9 +40,9 @@ const Dashboard = () => {
                                 <li> <NavLink to="/dashboard/reservation">
                                     <IoRestaurant />
                                     Reservation</NavLink> </li>
-                                <li> <NavLink to="/dashboard/">
-                                    <MdFormatListBulleted className="" />
-                                    Manage items</NavLink> </li>
+                                <li> <NavLink to="/dashboard/paymentHistory">
+                                <MdPayment />
+                                    Payment History</NavLink> </li>
                                 <li> <NavLink to="/dashboard/manageBooking">
                                     <FaBook />
                                     Manage bookings</NavLink> </li>
