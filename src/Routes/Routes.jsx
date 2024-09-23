@@ -18,6 +18,8 @@ import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 import UpdateItems from "../Pages/Dashboard/UpdateItems/UpdateItems";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
   export const router = createBrowserRouter([
     {
       path: "/",
@@ -59,6 +61,10 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
       children: [
         // all users routes
         {
+          path:'userHome',
+          element:<UserHome></UserHome>
+        },
+        {
           path: 'cart',
           element: <Cart></Cart>
         },
@@ -74,6 +80,12 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
         // only admin routes
         {
+          path:'adminHome',
+          element:<AdminRoutes>
+            <AdminHome></AdminHome>
+          </AdminRoutes>
+        },
+        {
           path: 'addItems',
           element: <AdminRoutes>
             <AddItems></AddItems>
@@ -84,7 +96,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
           element: <AdminRoutes>
             <UpdateItems></UpdateItems>
           </AdminRoutes>,
-          loader: ({params}) => fetch (`http://localhost:5000/menu/${params.id}`)
+          loader: ({params}) => fetch (`https://bistro-boss-resturent.vercel.app/menu/${params.id}`)
         },
         {
           path: 'manageItems',
